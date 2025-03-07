@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahibinden Clone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .header {
+      background-color: #ffd500;
+      padding: 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .product-card {
+      background: #fff;
+      padding: 20px;
+      width: 60%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .product-image {
+      text-align: center;
+    }
+    .product-image img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .product-details {
+      margin-top: 20px;
+    }
+    .product-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .product-info {
+      line-height: 1.6;
+    }
+    .contact {
+      background: #e1e1e1;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .payment-btn {
+      display: block;
+      width: 100%;
+      background-color: #ffcc00;
+      color: #000;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .payment-btn:hover {
+      background-color: #e6b800;
+    }
+    .payment-form {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .payment-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .payment-form button {
+      width: 100%;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .payment-form button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    function showPaymentForm() {
+      document.getElementById('payment-form').style.display = 'block';
+    }
+  </script>
+</head>
+<body>
+  <div class="header">sahibinden.com</div>
+  <div class="container">
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/400" alt="Arçelik Buzdolabı">
+      </div>
+      <div class="product-details">
+        <div class="product-title">Vestel Sıfır Klima (KUTU FATURA GARANTİ DAHİL)</div>
+        <div class="product-info">
+          <p>Fiyat: 11.000 TL</p>
+          <p>Konum: İzmir / Bornova</p>
+          <p>Türü: İç Ünite + Dış Ünite</p>
+          <p>Enerji Sınıfı: A+++</p>
+          <p>Hacim: 12.000</p>
+        </div>
+        <div class="contact">
+          Satıcı: Merve Taşçı<br>
+          Telefon: 0 (536) 020 96 38
+        </div>
+        <button class="payment-btn" onclick="showPaymentForm()">Ödeme Yap</button>
+        <div id="payment-form" class="payment-form">
+          <h3>Kart Bilgileri</h3>
+          <input type="text" placeholder="Kart Numarası" required>
+          <input type="text" placeholder="Ad Soyad" required>
+          <input type="text" placeholder="Son Kullanma Tarihi (AA/YY)" required>
+          <input type="text" placeholder="CVV" required>
+          <h3>Adres Bilgileri</h3>
+          <input type="text" placeholder="Adres" required>
+          <input type="text" placeholder="Şehir" required>
+          <input type="text" placeholder="Posta Kodu" required>
+          <button type="submit">Ödeme Yap</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
